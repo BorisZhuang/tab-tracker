@@ -14,4 +14,10 @@ app.get('/', (req, res) => {
   })
 })
 
+app.post('/register', (req, res) => {
+  res.send({
+    message: `Hello ${req.body.email} was registered! Have fun!`
+  })
+})
+
 app.listen(process.env.PORT || 8081)
