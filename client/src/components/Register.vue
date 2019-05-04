@@ -5,21 +5,24 @@
           <v-toolbar flat dense class="cyan" dark>
             <v-toolbar-title>Register</v-toolbar-title>
           </v-toolbar>
-          <div class="pl-4 pr-4 pt-2 pb-2">
-            <v-text-field
-              label="Email"
-              v-model="email"
-            ></v-text-field>
-            <br>
-            <v-text-field
-              label="Password"
-              v-model="password"
-            ></v-text-field>
-            <br>
-            <div class="error" v-html="error" />
-            <br>
-            <v-btn v-on:click="register" class="cyan" dark>Register</v-btn>
-          </div>
+          <form name="tab-tracker-form" autocomplete="off">
+            <div class="pl-4 pr-4 pt-2 pb-2">
+              <v-text-field
+                label="Email"
+                v-model="email"
+              ></v-text-field>
+              <br>
+              <v-text-field
+                label="Password"
+                type="password"
+                v-model="password"
+              ></v-text-field>
+              <br>
+              <div class="error" v-html="error" />
+              <br>
+              <v-btn v-on:click="register" class="cyan" dark>Register</v-btn>
+            </div>
+          </form>
         </div>
       </v-flex>
   </v-layout>
