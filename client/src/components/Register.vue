@@ -43,10 +43,11 @@ export default {
   methods: {
     async register () {
       try {
-        await AuthenService.register({
+        const response = await AuthenService.register({
           email: this.email,
           password: this.password
         })
+        this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
         this.error = error.response.data.error
       }
