@@ -4,9 +4,11 @@
       <v-btn flat dark class="toolbar-title" v-on:click="navigateTo({name: 'root'})">TabTracker</v-btn>
     </v-toolbar-items>
 
-<!--     <v-toolbar-items>
-      <v-btn flat dark>Browse</v-btn>
-    </v-toolbar-items> -->
+    <v-toolbar-items>
+      <v-btn flat dark v-on:click="navigateTo({name: 'songs'})">
+        Browse
+      </v-btn>
+    </v-toolbar-items>
 
     <v-spacer></v-spacer>
 
