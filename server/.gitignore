@@ -1,2 +1,4 @@
 node_modules/
-tabtracker.sqlite
+
+# db file
+*.sqlite
