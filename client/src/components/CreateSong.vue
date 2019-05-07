@@ -4,50 +4,62 @@
       <panel title="Song Metadata">
         <v-text-field
           label="Title"
+          :rules="[rules.required]"
           v-model="song.title"
         ></v-text-field>
 
         <v-text-field
           label="Artist"
+          :rules="[rules.required]"
           v-model="song.artist"
         ></v-text-field>
 
         <v-text-field
           label="Genre"
+          :rules="[rules.required]"
           v-model="song.genre"
         ></v-text-field>
 
         <v-text-field
           label="Album"
+          :rules="[rules.required]"
           v-model="song.album"
         ></v-text-field>
 
         <v-text-field
           label="AlbumImage"
+          :rules="[rules.required]"
           v-model="song.albumImage"
         ></v-text-field>
 
         <v-text-field
           label="YoutubeId"
+          :rules="[rules.required]"
           v-model="song.youtubeId"
         ></v-text-field>
       </panel>
     </v-flex>
     <v-flex xs8>
       <panel title="Song Structure" class="ml-4">
-        <v-text-field
+        <v-textarea
           label="Lyrics"
-          multi-line
+          :rules="[rules.required]"
           v-model="song.lyrics"
-        ></v-text-field>
+        ></v-textarea>
 
-        <v-text-field
+        <v-textarea
           label="Tab"
-          multi-line
+          :rules="[rules.required]"
           v-model="song.tab"
-        ></v-text-field>
+        ></v-textarea>
       </panel>
-      <v-btn v-on:click="create" class="cyan ma-4" dark>Create</v-btn>
+
+      <div class="error" v-if="error">
+        {{error}}
+      </div>
+      <v-btn v-on:click="create" class="cyan ma-4" dark>
+        Create
+      </v-btn>
     </v-flex>
   </v-layout>
 </template>
@@ -68,12 +80,23 @@ export default {
         youtubeId: null,
         lyrics: null,
         tab: null
-      }
+      },
+      rules: {
+        required: value => !!value || 'required'
+      },
+      error: null
     }
   },
   methods: {
     async create () {
       try {
+        this.error = null
+        const areAllFieldsFilledIn = Object.keys(this.song).every(key => !!this.song[key])
+        if (!areAllFieldsFilledIn) {
+          this.error = 'Please fill in all the required fields'
+          return
+        }
+
         await SongsService.post(this.song)
         this.$router.push({
           name: 'songs'
