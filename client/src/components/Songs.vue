@@ -8,10 +8,9 @@
             small
             absolute
             right
-            middle
             fab
-            @click="navigateTo({name: 'songs-create'})"
-            >
+            flat
+            @click="navigateTo({name: 'songs-create'})">
             <v-icon>add</v-icon>
           </v-btn>
           <div class="song" v-for="song in songs" :key="song.id">

@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
+import VueYoutube from 'vue-youtube'
 import { sync } from 'vuex-router-sync'
 import 'vuetify/dist/vuetify.min.css'
 import store from '@/store/store'
@@ -11,6 +12,7 @@ import store from '@/store/store'
 Vue.config.productionTip = false
 
 Vue.use(Vuetify)
+Vue.use(VueYoutube)
 
 sync(store, router)
 
