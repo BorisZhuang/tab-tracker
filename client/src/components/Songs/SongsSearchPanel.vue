@@ -1,14 +1,20 @@
 <template>
-  <panel title="Youtube Video">
-    <youtube :video-id="youtubeId" height="186"/>
+  <panel title="Search">
+    <v-text-field
+      label="Search"
+      v-model="search"
+    ></v-text-field>
   </panel>
 </template>
 
 <script>
+
 export default {
-  props: [
-    'youtubeId'
-  ]
+  data () {
+    return {
+      search: ''
+    }
+  }
 }
 </script>
 

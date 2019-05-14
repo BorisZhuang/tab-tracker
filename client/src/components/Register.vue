@@ -25,7 +25,6 @@
 
 <script>
 import AuthenService from '@/services/AuthenticationService'
-import Panel from '@/components/Panel'
 
 export default {
   name: 'Register',
@@ -48,9 +47,6 @@ export default {
         this.error = error.response.data.error
       }
     }
-  },
-  components: {
-    Panel
   }
 }
 </script>
