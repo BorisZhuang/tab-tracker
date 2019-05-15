@@ -54,7 +54,7 @@
         ></v-textarea>
       </panel>
 
-      <div class="error" v-if="error">
+      <div class="error ml-4" v-if="error">
         {{error}}
       </div>
       <v-btn v-on:click="save" class="cyan ma-4" dark>
@@ -122,4 +122,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.error {
+  color: white
+}
 </style>
