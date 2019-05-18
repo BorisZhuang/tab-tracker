@@ -12,10 +12,24 @@
           {{song.genre}}
         </div>
         <v-btn
-          class="cyan ma-4"
+          class="cyan ma-2"
           dark
           :to="({name: 'song-edit', params: {songId: song.id}})">
           Edit
+        </v-btn>
+        <v-btn
+          v-if="isUserLoggedIn && !bookmark"
+          class="cyan ma-2"
+          dark
+          @click="setBookmark">
+          Bookmark
+        </v-btn>
+        <v-btn
+          v-if="isUserLoggedIn && bookmark"
+          class="cyan ma-2"
+          dark
+          @click="unbookmark">
+          Unbookmark
         </v-btn>
       </v-flex>
 
@@ -29,10 +43,56 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import BookmarksService from '@/services/BookmarksService'
+
 export default {
   props: [
     'song'
-  ]
+  ],
+  data () {
+    return {
+      bookmark: null
+    }
+  },
+  computed: {
+    ...mapState([
+      'isUserLoggedIn'
+    ])
+  },
+  async mounted () {
+    if (!this.isUserLoggedIn) {
+      return
+    }
+    try {
+      this.bookmark = (await BookmarksService.index({
+        songId: this.song.id,
+        userId: this.$store.state.user.id
+      })).data
+    } catch (error) {
+      console.log(error)
+    }
+  },
+  methods: {
+    async setBookmark () {
+      try {
+        this.bookmark = (await BookmarksService.post({
+          songId: this.song.id,
+          userId: this.$store.state.user.id
+        })).data
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async unbookmark () {
+      try {
+        await BookmarksService.delete(this.bookmark.id)
+        this.bookmark = null
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
 }
 </script>
 
