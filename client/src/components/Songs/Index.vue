@@ -2,6 +2,7 @@
   <v-layout>
       <v-flex class="xs6">
         <songs-bookmarks/>
+        <recently-viewed-songs class="mt-2"/>
       </v-flex>
 
       <v-flex class="xs6 ml-2">
@@ -16,12 +17,14 @@ import SongsService from '@/services/SongsService'
 import SongsSearchPanel from './SongsSearchPanel'
 import SongsPanel from './SongsPanel'
 import SongsBookmarks from './SongsBookmarks'
+import RecentlyViewedSongs from './RecentlyViewedSongs'
 
 export default {
   components: {
     SongsSearchPanel,
     SongsPanel,
-    SongsBookmarks
+    SongsBookmarks,
+    RecentlyViewedSongs
   },
   data () {
     return {

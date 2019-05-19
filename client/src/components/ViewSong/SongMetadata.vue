@@ -70,7 +70,7 @@ export default {
         songId: this.song.id,
         userId: this.user.id
       })).data
-      if (bookmarks.length){
+      if (bookmarks.length) {
         this.bookmark = bookmarks[0]
       }
     } catch (error) {
