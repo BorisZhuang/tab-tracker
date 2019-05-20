@@ -40,7 +40,6 @@ export default {
   computed: {
     ...mapState([
       'isUserLoggedIn',
-      'user',
       'route'
     ])
   },
@@ -48,10 +47,7 @@ export default {
     const songId = this.route.params.songId
     this.song = (await SongsService.show(songId)).data
     if (this.isUserLoggedIn) {
-      SongsHistoryService.post({
-        songId,
-        userId: this.user.id
-      })
+      SongsHistoryService.post({ songId })
     }
   },
   components: {
