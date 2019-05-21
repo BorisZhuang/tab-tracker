@@ -33,6 +33,9 @@
 
         <v-flex xs6>
           <img class="album-image" :src="song.albumImage"/>
+          <div class="song-album">
+            {{song.album}}
+          </div>
         </v-flex>
       </v-layout>
     </div>
@@ -72,11 +75,15 @@ export default {
 .song-artist {
   font-size: 24px;
 }
-.song-title {
+.song-genre {
   font-size: 18px;
 }
+.song-album {
+  font-size: 15px;
+}
 .album-image {
-  width: 70%;
+  width: 45%;
+  height: 80%;
   margin: 0 auto;
 }
 </style>
