@@ -1,16 +1,17 @@
 <template>
   <panel title="Songs">
-    <v-btn
-      slot='action'
-      class="cyan"
-      small
-      absolute
-      right
-      fab
-      flat
-      :to="({name: 'songs-create'})">
-      <v-icon>add</v-icon>
-    </v-btn>
+    <template v-slot:action>
+      <v-btn
+        class="cyan"
+        small
+        absolute
+        right
+        fab
+        flat
+        :to="({name: 'songs-create'})">
+        <v-icon>add</v-icon>
+      </v-btn>
+    </template>
     <div class="song" v-for="song in songs" :key="song.id">
       <v-layout>
         <v-flex xs6>
