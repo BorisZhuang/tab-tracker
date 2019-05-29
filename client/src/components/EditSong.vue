@@ -66,32 +66,15 @@
 
 <script>
 import SongsService from '@/services/SongsService'
+import { songsEditMixin } from '@/mixins/songsMixin'
 
 export default {
-  data () {
-    return {
-      song: {
-        title: null,
-        artist: null,
-        genre: null,
-        album: null,
-        albumImage: null,
-        youtubeId: null,
-        lyrics: null,
-        tab: null
-      },
-      rules: {
-        required: value => !!value || 'required'
-      },
-      error: null
-    }
-  },
+  mixins: [songsEditMixin],
   methods: {
     async save () {
       try {
         this.error = null
-        const areAllFieldsFilledIn = Object.keys(this.song).every(key => !!this.song[key])
-        if (!areAllFieldsFilledIn) {
+        if (!this.isAllFieldsFilled()) {
           this.error = 'Please fill in all the required fields'
           return
         }

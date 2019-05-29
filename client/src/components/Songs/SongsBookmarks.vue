@@ -18,36 +18,15 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import BookmarksService from '@/services/BookmarksService'
+import { songsTableMixin } from '@/mixins/songsMixin'
 
 export default {
+  mixins: [songsTableMixin],
   data () {
     return {
-      headers: [
-        {
-          text: 'Title',
-          align: 'right',
-          value: 'title'
-        },
-        {
-          text: 'Artist',
-          align: 'right',
-          value: 'artist'
-        }
-      ],
-      pagination: {
-        descending: true,
-        sortBy: 'createdAt'
-      },
       bookmarks: []
     }
-  },
-  computed: {
-    ...mapState([
-      'isUserLoggedIn',
-      'user'
-    ])
   },
   async mounted () {
     if (this.isUserLoggedIn) {
