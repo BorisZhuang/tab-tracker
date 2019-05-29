@@ -5,7 +5,7 @@ module.exports = {
   async index (req, res) {
     try {
       let songs = null
-      const search = req.query.search
+      const { search } = req.query
       if (search) {
         songs = await Song.findAll({
           where: {

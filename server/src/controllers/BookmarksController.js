@@ -63,17 +63,20 @@ module.exports = {
   async delete (req, res) {
     try {
       const userId = req.user.id
+      console.log('req: ' + req.params.bookmarkId)
       const { bookmarkId } = req.params
       const bookmark = await Bookmark.findOne({
-        id: bookmarkId,
-        UserId: userId
+        where: {
+          id: bookmarkId,
+          UserId: userId
+        }
       })
       if (!bookmark) {
         return res.status(403).send({
           error: 'you do not have access to this bookmark.'
         })
       }
-      console.log('bookmark: ' + bookmark)
+      console.log('bookmark id: ' + bookmark.id)
       await bookmark.destroy()
       res.send(bookmark)
     } catch (err) {
